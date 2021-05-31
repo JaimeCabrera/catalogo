@@ -10,7 +10,7 @@ import AddProduct from "../components/AddProduct.vue";
 Vue.use(VueRouter);
 
 export default new VueRouter({
-  mode: "history",
+  mode: "hash",
   routes: [
     {
       path: "/home",
@@ -18,22 +18,22 @@ export default new VueRouter({
       component: Dashboard
     },
     {
-      path: "/dashboard/products",
+      path: "/home/products",
       name: "products",
       component: Products
     },
     {
-      path: "/dashboard/products/add-product",
+      path: "/home/products/add-product",
       name: "products-add",
       component: AddProduct
     },
     {
-      path: "/dashboard/products/edit-product",
+      path: "/home/products/edit-product",
       name: "products-edit",
       component: AddProduct
     },
     {
-      path: "/dashboard/categories",
+      path: "/home/categories",
       name: "categories",
       component: Categories
     }

@@ -13,7 +13,7 @@
             </h6>
           </div>
           <div class="card-body p-4">
-            <form @submit.prevent="addNewProduct">
+            <form>
               <div class="row">
                 <div class="col">
                   <div class="form-group ">
@@ -92,10 +92,18 @@
                     v-bind:to="{ name: 'products' }"
                     >Cancelar</router-link
                   >
-                  <button v-if="editMode" class="btn btn-success" type="submit">
+                  <button
+                    v-if="editMode"
+                    class="btn btn-success"
+                    @click.prevent="editProduct"
+                  >
                     <i class="fas fa-save    "></i> Actualizar informacion
                   </button>
-                  <button v-else class="btn btn-success" type="submit">
+                  <button
+                    v-else
+                    class="btn btn-success"
+                    @click.prevent="addNewProduct"
+                  >
                     <i class="fas fa-save    "></i> Guardar producto
                   </button>
                 </div>
@@ -116,13 +124,16 @@ export default {
       product: {},
       categories: [],
       selected: "",
-      editMode: null
+      editMode: null,
+      productId: ""
     };
   },
   mounted() {
     if (this.$route.params.product) {
       this.editMode = true;
       this.product = this.$route.params.product;
+      this.productId = this.product.id;
+      console.log("editando el prod", this.productId);
       this.selected = this.product.category_id;
     } else {
       if (this.$route.name === "products-edit") {
@@ -147,6 +158,21 @@ export default {
       const params = { ...this.product, category_id: this.selected };
       axios
         .post("/products", params)
+        .then(res => {
+          if (res.data.ok) {
+            this.product = {};
+            this.$router.push({ name: "products" });
+            this.editMode = false;
+          }
+        })
+        .catch(e => {
+          console.log(e);
+        });
+    },
+    editProduct() {
+      const params = { ...this.product, category_id: this.selected };
+      axios
+        .put(`/products/${this.productId}`, params)
         .then(res => {
           if (res.data.ok) {
             this.product = {};

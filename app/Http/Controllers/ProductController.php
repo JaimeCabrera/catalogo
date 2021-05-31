@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -91,7 +90,19 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+        $data = $request->validate([
+            'name' => 'required',
+            'short_description' => 'required',
+            'description' => 'required',
+            'category_id' => 'required'
+        ]);
+        $product->name = $data['name'];
+        $product->short_description = $data['short_description'];
+        $product->description = $data['description'];
+        $product->category_id = $data['category_id'];
+        $product->url = Str::slug($data['name'], '-');
+        $product->save();
+        return response()->json(['ok' => true, 'product' => $product]);
     }
 
     /**

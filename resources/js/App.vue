@@ -25,31 +25,35 @@
       <hr class="sidebar-divider my-0" />
 
       <!-- Nav Item - Dashboard -->
-      <li class="nav-item active">
+      <!-- <li class="nav-item active">
         <router-link class="nav-link" :to="{ name: 'home' }">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span>
         </router-link>
-      </li>
+      </li> -->
 
       <!-- Divider -->
       <hr class="sidebar-divider" />
-
+      <li class="nav-item active">
+        <router-link class="nav-link" :to="{ name: 'products' }">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>Productos</span>
+        </router-link>
+      </li>
+      <li class="nav-item active">
+        <router-link class="nav-link " :to="{ name: 'categories' }">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>Categorias</span>
+        </router-link>
+      </li>
       <!-- Heading -->
       <!-- <div class="sidebar-heading">
         Productos
       </div> -->
 
       <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item">
-        <a
-          class="nav-link collapsed"
-          href="#"
-          data-toggle="collapse"
-          data-target="#collapseTwo"
-          aria-expanded="true"
-          aria-controls="collapseTwo"
-        >
+      <!-- <li class="nav-item">
+        <a class="collapse-item" :to="{ name: 'products' }">
           <i class="fas fa-fw fa-cog"></i>
           <span>Productos</span>
         </a>
@@ -60,7 +64,7 @@
           data-parent="#accordionSidebar"
         >
           <div class="bg-white py-2 collapse-inner rounded">
-            <!-- <h6 class="collapse-header">Productos:</h6> -->
+            <h6 class="collapse-header">Productos:</h6>
             <router-link class="collapse-item" :to="{ name: 'products' }"
               >Productos</router-link
             >
@@ -69,7 +73,7 @@
             >
           </div>
         </div>
-      </li>
+      </li> -->
 
       <!-- Divider -->
       <!-- Divider -->
